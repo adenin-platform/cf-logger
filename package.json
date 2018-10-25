@@ -2,6 +2,5 @@
   "name": "@adenin/cf-logger",
   "version": "1.0.0",
   "description": "Filtered logging by file path through environment variable",
-  "main": "index.js",
-  "author": "olliejm"
+  "main": "index.js"
 }
