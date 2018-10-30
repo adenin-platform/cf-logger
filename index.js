@@ -5,40 +5,40 @@ module.exports = {
     log(msg) {
         if (!skip()) {
             console.log(
-                new Date().toISOString() + ': ' + 
-                chalk.green(msg)
+                chalk.grey(new Date().toISOString() + ': ') + 
+                chalk.blue.bold('LOG: ') + chalk.blue(msg)
             );
         }
     },
     info(msg) {
         if (!skip()) {
             console.info(
-                new Date().toISOString() + ': ' + 
-                chalk.green('INFO: ' + msg)
+                chalk.grey(new Date().toISOString() + ': ') + 
+                chalk.green.bold('INFO: ') + chalk.green(msg)
             );
         }
     },
     error(msg) {
         if (!process.env.LOG_FILTER || !skip()) {
             console.error(
-                new Date().toISOString() + ': ' + 
-                chalk.red('ERROR: ' + msg)
+                chalk.grey(new Date().toISOString() + ': ') + 
+                chalk.red.bold('ERROR: ') + chalk.red(msg)
             );
         }
     },
     warn(msg) {
         if (!skip()) {
             console.warn(
-                new Date().toISOString() + ': ' + 
-                chalk.yellow('WARN: ' + msg)
+                chalk.grey(new Date().toISOString() + ': ') + 
+                chalk.yellow.bold('WARN: ') + chalk.yellow(msg)
             );
         }
     },
     debug(msg) {
         if (!skip()) {
             console.debug(
-                new Date().toISOString() + ': ' + 
-                chalk.magenta('DEBUG: ' + msg)
+                chalk.grey(new Date().toISOString() + ': ') + 
+                chalk.magenta.bold('DEBUG: ') + chalk.magenta(msg)
             );
         }
     }
