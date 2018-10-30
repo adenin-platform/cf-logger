@@ -16,7 +16,7 @@ module.exports = {
         }
     },
     warn(msg) {
-        if (!skip()) console.warn(new Date().toISOString() + ': ' + chalk.orange('WARN: ' + msg));
+        if (!skip()) console.warn(new Date().toISOString() + ': ' + chalk.yellow('WARN: ' + msg));
     },
     debug(msg) {
         if (!skip()) console.debug(new Date().toISOString() + ': ' + chalk.magenta('DEBUG: ' + msg));
