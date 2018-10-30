@@ -1,6 +1,6 @@
 {
   "name": "@adenin/cf-logger",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Filtered logging by file path through environment variable",
   "repository": {
     "type": "git",
