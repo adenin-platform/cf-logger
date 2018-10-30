@@ -31,3 +31,5 @@ logger.warn(msg);
 logger.debug(msg);
 logger.error(msg);
 ```
+
+If `NODE_ENV=development`, all statements will be logged when `ENABLE_LOG` is not set - if `NODE_ENV=production`, only error logs will pass through when `ENABLE_LOG` is not set. Setting `ENABLE_LOG` therefore overrides the effect of `NODE_ENV`, and will always result in only the specified files or directories having logging enabled, within which, all statements will pass through.
