@@ -8,7 +8,7 @@ module.exports = {
         if (!skip()) console.info(msg);
     },
     error(msg) {
-        if (process.env.NODE_ENV == 'production' && !process.env.ENABLE_LOG) {
+        if (!process.env.LOG_FILTER) {
             console.error(msg);
         } else if (!skip()) {
             console.error(msg);
@@ -23,8 +23,8 @@ module.exports = {
 };
 
 function skip() {
-    if (process.env.ENABLE_LOG) {
-        const loggables = process.env.ENABLE_LOG.split(';');
+    if (process.env.LOG_FILTER) {
+        const loggables = process.env.LOG_FILTER.split(';');
 
         for (let i = 0; i < loggables.length; i++) {
             if (module.parent.filename.indexOf(normalize(loggables[i])) != -1) {
