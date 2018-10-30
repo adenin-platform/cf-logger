@@ -1,24 +1,25 @@
 const { normalize } = require('path');
+const chalk = require('chalk');
 
 module.exports = {
     log(msg) {
-        if (!skip()) console.log(msg);
+        if (!skip()) console.log(new Date().toISOString() + ': ' + chalk.green(msg));
     },
     info(msg) {
-        if (!skip()) console.info(msg);
+        if (!skip()) console.info(new Date().toISOString() + ': ' + chalk.green('INFO: ' + msg));
     },
     error(msg) {
         if (!process.env.LOG_FILTER) {
-            console.error(msg);
+            console.error(new Date().toISOString() + ': ' + chalk.red('ERROR: ' + msg));
         } else if (!skip()) {
-            console.error(msg);
+            console.error(new Date().toISOString() + ': ' + chalk.red('ERROR: ' + msg));
         }
     },
     warn(msg) {
-        if (!skip()) console.warn(msg);
+        if (!skip()) console.warn(new Date().toISOString() + ': ' + chalk.orange('WARN: ' + msg));
     },
     debug(msg) {
-        if (!skip()) console.debug(msg);
+        if (!skip()) console.debug(new Date().toISOString() + ': ' + chalk.magenta('DEBUG: ' + msg));
     }
 };
 

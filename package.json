@@ -10,5 +10,8 @@
     "url": "https://github.com/NowAssistant/cf-logger/issues"
   },
   "author": "olliejm",
-  "main": "index.js"
+  "main": "index.js",
+  "dependencies": {
+    "chalk": "^2.4.1"
+  }
 }
