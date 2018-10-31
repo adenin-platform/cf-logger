@@ -1,46 +1,41 @@
 const { normalize } = require('path');
 const chalk = require('chalk');
 
-const date = () => new Date().toISOString() + ': ';
+const date = () => chalk.grey(new Date().toISOString() + ': ');
 
 module.exports = {
     log(msg) {
         if (!skip()) {
             console.log(
-                chalk.grey(date()) + 
-                chalk.blue(chalk.bold('LOG:   ') + msg)
+                date() + chalk.blue(chalk.bold('LOG:   ') + msg)
             );
         }
     },
     info(msg) {
         if (!skip()) {
             console.info(
-                chalk.grey(date()) + 
-                chalk.green(chalk.bold('INFO:  ') + msg)
+                date() + chalk.green(chalk.bold('INFO:  ') + msg)
             );
         }
     },
     error(msg) {
         if (!process.env.LOG_FILTER || !skip()) {
             console.error(
-                chalk.grey(date()) + 
-                chalk.red(chalk.bold('ERROR: ') + msg)
+                date() + chalk.red(chalk.bold('ERROR: ') + msg)
             );
         }
     },
     warn(msg) {
         if (!skip()) {
             console.warn(
-                chalk.grey(date()) +
-                chalk.yellow(chalk.bold('WARN:  ') + msg)
+                date() + chalk.yellow(chalk.bold('WARN:  ') + msg)
             );
         }
     },
     debug(msg) {
         if (!skip()) {
             console.debug(
-                chalk.grey(date()) + 
-                chalk.magenta(chalk.bold('DEBUG: ') + msg)
+                date() + chalk.magenta(chalk.bold('DEBUG: ') + msg)
             );
         }
     }
