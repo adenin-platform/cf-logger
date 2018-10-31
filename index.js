@@ -1,44 +1,46 @@
 const { normalize } = require('path');
 const chalk = require('chalk');
 
+const date = () => new Date().toISOString() + ': ';
+
 module.exports = {
     log(msg) {
         if (!skip()) {
             console.log(
-                chalk.grey(new Date().toISOString() + ': ') + 
-                chalk.blue.bold('LOG: ') + chalk.blue(msg)
+                chalk.grey(date()) + 
+                chalk.blue(chalk.bold('LOG:   ') + msg)
             );
         }
     },
     info(msg) {
         if (!skip()) {
             console.info(
-                chalk.grey(new Date().toISOString() + ': ') + 
-                chalk.green.bold('INFO: ') + chalk.green(msg)
+                chalk.grey(date()) + 
+                chalk.green(chalk.bold('INFO:  ') + msg)
             );
         }
     },
     error(msg) {
         if (!process.env.LOG_FILTER || !skip()) {
             console.error(
-                chalk.grey(new Date().toISOString() + ': ') + 
-                chalk.red.bold('ERROR: ') + chalk.red(msg)
+                chalk.grey(date()) + 
+                chalk.red(chalk.bold('ERROR: ') + msg)
             );
         }
     },
     warn(msg) {
         if (!skip()) {
             console.warn(
-                chalk.grey(new Date().toISOString() + ': ') + 
-                chalk.yellow.bold('WARN: ') + chalk.yellow(msg)
+                chalk.grey(date()) +
+                chalk.yellow(chalk.bold('WARN:  ') + msg)
             );
         }
     },
     debug(msg) {
         if (!skip()) {
             console.debug(
-                chalk.grey(new Date().toISOString() + ': ') + 
-                chalk.magenta.bold('DEBUG: ') + chalk.magenta(msg)
+                chalk.grey(date()) + 
+                chalk.magenta(chalk.bold('DEBUG: ') + msg)
             );
         }
     }
@@ -50,8 +52,8 @@ function skip() {
 
         for (let i = 0; i < loggables.length; i++) {
             if (module.parent.filename.indexOf(
-                    normalize(loggables[i])
-                ) != -1) {
+                normalize(loggables[i])
+            ) != -1) {
                 return false;
             }   
         }
