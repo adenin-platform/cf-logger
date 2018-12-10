@@ -1,4 +1,7 @@
-const { normalize } = require('path');
+/* eslint-disable no-console */
+'use strict';
+
+const {normalize} = require('path');
 const chalk = require('chalk');
 
 const date = () => chalk.grey(new Date().toISOString() + ': ');
@@ -6,12 +9,12 @@ const date = () => chalk.grey(new Date().toISOString() + ': ');
 module.exports = {
     log(msg) {
         if (!skip()) {
-            console.log(date() + chalk.blue(chalk.bold('LOG:   ') + msg));
+            console.log(date() + chalk.blue(chalk.bold('LOG: ') + msg));
         }
     },
     info(msg) {
         if (!skip()) {
-            console.info(date() + chalk.green(chalk.bold('INFO:  ') + msg));
+            console.info(date() + chalk.green(chalk.bold('INFO: ') + msg));
         }
     },
     error(msg) {
@@ -21,7 +24,7 @@ module.exports = {
     },
     warn(msg) {
         if (!skip()) {
-            console.warn(date() + chalk.yellow(chalk.bold('WARN:  ') + msg));
+            console.warn(date() + chalk.yellow(chalk.bold('WARN: ') + msg));
         }
     },
     debug(msg) {
@@ -36,7 +39,7 @@ function skip() {
         const loggables = process.env.LOG_FILTER.split(';');
 
         for (let i = 0; i < loggables.length; i++) {
-            if (module.parent.filename.indexOf(normalize(loggables[i])) != -1) {
+            if (module.parent.filename.indexOf(normalize(loggables[i])) !== -1) {
                 return false;
             }
         }
@@ -44,7 +47,7 @@ function skip() {
         return true;
     }
 
-    if (process.env.NODE_ENV == 'development') {
+    if (process.env.NODE_ENV === 'development') {
         return false;
     }
 
