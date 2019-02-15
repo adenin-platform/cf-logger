@@ -4,14 +4,14 @@
   "description": "Filtered logging by file path through environment variable",
   "repository": {
     "type": "git",
-    "url": "https://github.com/NowAssistant/cf-logger"
+    "url": "https://github.com/adenin-platform/cf-logger"
   },
   "bugs": {
-    "url": "https://github.com/NowAssistant/cf-logger/issues"
+    "url": "https://github.com/adenin-platform/cf-logger/issues"
   },
   "author": "olliejm",
   "main": "index.js",
   "dependencies": {
-    "chalk": "^2.4.1"
+    "chalk": "^2.4.2"
   }
 }
