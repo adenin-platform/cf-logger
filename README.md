@@ -1,6 +1,6 @@
 # Cloud Function Filtered Logger
 
-A wrapper for `console` which allows you to turn execution of console statements on or off per file or per directory through an environment variable. Was built for use within cloud functions to enable logging when required without having to alter source code.
+A lightweight wrapper for `console` with added timestamp, log level indicator, and styling - for use with adenin cloud functions.
 
 ## Installation
 
@@ -11,12 +11,6 @@ npm install @adenin/cf-logger
 ```
 
 ## Usage
-
-Due to the internal use of `module.parent` to resolve file paths, every file which wishes to use this logger must require it (i.e., it will not function if passed between files).
-
-The environment variable it will search for is `LOG_FILTER`, which should contain a `;` delimited list of file names or directories for which you want to enable logging. 
-
-For example, an entry `index.js` would enable logging in all files called `index.js`, an entry `mymodule/` would enable logging in all files in the directory `mymodule` and below, and an entry `mymodule/dosomething.js` would enable logging only for that one file.
 
 A file which wishes to use the logger simply needs to import it, then use its methods, as follows:
 
@@ -32,4 +26,4 @@ logger.debug(msg);
 logger.error(msg);
 ```
 
-If `NODE_ENV=development`, all statements will be logged when `LOG_FILTER` is not set - if `NODE_ENV=production`, only error logs will pass through when `LOG_FILTER` is not set. Setting `LOG_FILTER` therefore overrides the effect of `NODE_ENV`, and will always result in only the specified files or directories having logging enabled, within which, all statements will pass through.
+If `NODE_ENV=development`, all statements will be logged, if `NODE_ENV=production`, only error statements will be logged.
