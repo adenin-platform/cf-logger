@@ -2,6 +2,7 @@
 'use strict';
 
 const chalk = require('chalk');
+const got = require('got');
 
 const date = () => chalk.grey(new Date().toISOString() + ':');
 
@@ -14,6 +15,16 @@ module.exports = {
   },
   error: (...args) => {
     console.error(...[date(), chalk.red.bold('ERROR:')].concat(args));
+
+    if (process.env.LOG_SERVER_URL) {
+      got.post(process.env.LOG_SERVER_URL, {
+        method: 'POST',
+        json: true,
+        body: {
+          error: args
+        }
+      });
+    }
   },
   warn: (...args) => {
     if (process.env.NODE_ENV === 'development') console.warn(...[date(), chalk.yellow.bold('WARN:')].concat(args));

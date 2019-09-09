@@ -12,6 +12,7 @@
   "author": "olliejm",
   "main": "index.js",
   "dependencies": {
-    "chalk": "^2.4.2"
+    "chalk": "^2.4.2",
+    "got": "^9.6.0"
   }
 }
