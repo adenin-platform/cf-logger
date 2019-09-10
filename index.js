@@ -15,7 +15,7 @@ module.exports = {
   },
   error: (...args) => {
     console.error(...[date(), chalk.red.bold('ERROR:')].concat(args));
-    sendCloudLog(args);
+    sendCloudLog(args, 'ERROR');
   },
   warn: (...args) => {
     if (process.env.NODE_ENV === 'development') console.warn(...[date(), chalk.yellow.bold('WARN:')].concat(args));
@@ -25,11 +25,12 @@ module.exports = {
   }
 };
 
-function sendCloudLog(args) {
+function sendCloudLog(args, level) {
   if (!process.env.LOG_SERVER_URL) return;
 
   const payload = {
-    host: process.env.HOST
+    host: process.env.HOST,
+    level: level
   };
 
   for (let i = 0; i < args.length; i++) {
